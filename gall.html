@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>갤러리 페이지 - 아티스트 웹사이트</title>
+  <style>
+    /* ===== 기본 리셋 ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.5; color: #333; }
+
+    /* ===== 상단 내비게이션 ===== */
+    .hero {
+      width: 100%;
+      height: 80px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .nav-buttons {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      max-width: 1980px;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+    .nav-left a img { width: 50px; height: 50px; }
+    .nav-right { display: flex; gap: 50px; }
+
+    /* ===== 네비게이션 이미지 효과 ===== */
+    .nav-right a img {
+      width: 50px;
+      height: 50px;
+      transition: opacity 0.3s;
+      opacity: 0.6; /* 선택되지 않은 페이지 기본 60% 흐림 */
+    }
+    .nav-right a.current img {
+      opacity: 1; /* 선택된 페이지 원본 */
+    }
+    .nav-right a img:hover {
+      opacity: 0.8; /* 마우스 오버 시 강조 */
+    }
+
+    /* ===== 멤버 섹션 ===== */
+    .member-section {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
+    .member-info { flex: 1 1 400px; }
+    .member-info h2 { font-size: 2.5rem; margin-bottom: 16px; color: #222; }
+    .member-info p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #555;
+      white-space: pre-line;
+    }
+    .member-image { flex: 1 1 400px; }
+    .member-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* ===== 갤러리 ===== */
+    .gallery-section { padding: 40px 20px; background: #fafafa; }
+    .gallery-title { text-align: center; font-size: 2rem; margin-bottom: 20px; color: #111; }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .gallery img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .gallery img:hover { transform: scale(1.05); }
+
+    /* ===== 푸터 ===== */
+    footer {
+      background: #111;
+      color: #eee;
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+    footer a { color: #aaa; text-decoration: none; margin: 0 10px; transition: color 0.3s; }
+    footer a:hover { color: #fff; }
+
+    /* ===== 반응형 ===== */
+    @media (max-width: 1024px) {
+      .gallery { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .member-section { flex-direction: column; gap: 24px; }
+      .nav-left a img, .nav-right a img { width: 40px; height: 40px; }
+      .member-info h2 { font-size: 2rem; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery img { height: 150px; }
+    }
+    @media (max-width: 480px) {
+      .gallery { grid-template-columns: 1fr; }
+      .gallery img { height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== 상단 내비게이션 ===== -->
+  <section class="hero">
+    <div class="nav-buttons">
+      <div class="nav-left">
+        <a href="index.html"><img src="yblogo.png" alt="홈" /></a>
+      </div>
+      <div class="nav-right">
+        <a href="member.html"><img src="member.jpg" alt="멤버" /></a>
+        <a href="album.html"><img src="music.jpg" alt="앨범" /></a>
+        <a href="gall.html" class="current"><img src="gall.jpg" alt="갤러리" /></a>
+        <a href="MD.html"><img src="MD.jpg" alt="MD" /></a>
+        <a href="concert.html"><img src="con.jpg" alt="콘서트일정" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 멤버 섹션 ===== -->
+  <section class="member-section">
+    <div class="member-info">
+      <h2>갤러리</h2>
+      <p>YB의 다양한 공연과 활동 사진을 갤러리에서 확인해보세요.</p>
+    </div>
+    <div class="member-image">
+      <img src="yb.jpg" alt="갤러리 대표 이미지" />
+    </div>
+  </section>
+
+  <!-- ===== 갤러리 섹션 ===== -->
+  <section class="gallery-section">
+    <h2 class="gallery-title">갤러리</h2>
+    <div class="gallery">
+      <img src="yb.jpg" alt="사진 1">
+      <img src="yb2.jpg" alt="사진 2">
+      <img src="ybsign.jpg" alt="사진 3">
+      <img src="Dc1.JPG" alt="사진 4">
+      <img src="dc2.JPG" alt="사진 5">
+      <img src="dc3.JPG" alt="사진 6">
+      <img src="dc4.JPG" alt="사진 7">
+      <img src="dc5.JPG" alt="사진 8">
+      <img src="dc6.JPG" alt="사진 9">
+      <img src="dc7.JPG" alt="사진 10">
+      <img src="dc8.JPG" alt="사진 11">
+      <img src="yb9.JPG" alt="사진 12">
+      <img src="yb10.JPG" alt="사진 13">
+      <img src="yb11.JPG" alt="사진 14">
+      <img src="yb12.JPG" alt="사진 15">
+      <img src="yb13.JPG" alt="사진 16">
+      <img src="yb14.JPG" alt="사진 17">
+      <img src="yb15.jpg" alt="사진 18">
+      <img src="yb16.png" alt="사진 19">
+      <img src="yb17.png" alt="사진 20">
+      <img src="yb18.jpg" alt="사진 21">
+      <img src="yb19.png" alt="사진 22">
+      <img src="yb20.JPG" alt="사진 23">
+      <img src="yb21.JPG" alt="사진 24">
+    </div>
+  </section>
+
+  <!-- ===== 푸터 ===== -->
+  <footer>
+    <p>&copy; 2025 YB Official FAN Website. YB REMASTERED 3.0</p>
+    <p>deecompany@naver.com</p>
+  </footer>
+
+</body>
+</html>
